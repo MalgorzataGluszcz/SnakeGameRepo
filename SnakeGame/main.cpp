@@ -3,7 +3,7 @@
 
 int main()
 {
-	SnakeGameApp::SnakeGame snakeGame;
+	SnakeGame snakeGame;
 	snakeGame.run();
 
 	return 0;

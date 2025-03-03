@@ -141,7 +141,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeGame.cpp" />
   </ItemGroup>
@@ -150,8 +152,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Snake.hpp" />
     <ClInclude Include="SnakeGame.hpp" />
+    <ClInclude Include="State.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

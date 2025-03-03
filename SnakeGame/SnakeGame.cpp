@@ -1,63 +1,64 @@
 #include "SnakeGame.hpp"
 
-namespace SnakeGameApp
+SnakeGame::SnakeGame() : m_window(sf::VideoMode(1920, 1080), "Snake Game")
 {
-	SnakeGame::SnakeGame() : m_window(sf::VideoMode(1920, 1080), "Snake Game")
-	{}
+	m_gameState.initState();
+}
 
-	void SnakeGame::run()
+void SnakeGame::run()
+{
+	sf::Clock clock;
+
+	while (m_window.isOpen())
 	{
-		sf::Clock clock;
-
-		while (m_window.isOpen())
+		eventHandle();
+		if (clock.getElapsedTime().asMilliseconds() > 100)
 		{
-			eventHandle();
-			if (clock.getElapsedTime().asMilliseconds() > 100)
-			{
-				updateAll();
-				clock.restart();
-			}
-
-			windowClear();
-			drawToWindow();
-			displayToWindow();
+			updateAll();
+			clock.restart();
 		}
+
+		windowClear();
+		drawToWindow();
+		displayToWindow();
 	}
+}
 
-	void SnakeGame::eventHandle()
+void SnakeGame::eventHandle()
+{
+	sf::Event ev;
+	while (m_window.pollEvent(ev))
 	{
-		sf::Event ev;
-		while (m_window.pollEvent(ev))
+		switch (ev.type)
 		{
-			switch (ev.type)
-			{
-			case sf::Event::Closed:
-				m_window.close();
-				break;
-			}
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		case sf::Event::Closed:
 			m_window.close();
+			break;
+		}
 	}
 
-	void SnakeGame::updateAll()
-	{
-		m_snake.update();
-	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		m_window.close();
+}
 
-	void SnakeGame::windowClear()
-	{
-		m_window.clear();
-	}
+void SnakeGame::updateAll()
+{
+	m_gameState.update();
+	m_snake.update();
+}
 
-	void SnakeGame::drawToWindow()
-	{
-		m_snake.draw(m_window);
-	}
+void SnakeGame::windowClear()
+{
+	m_window.clear();
+}
 
-	void SnakeGame::displayToWindow()
-	{
-		m_window.display();
-	}
+void SnakeGame::drawToWindow()
+{
+	m_gameState.draw(m_window);
+	m_snake.draw(m_window);
+}
+
+void SnakeGame::displayToWindow()
+{
+	m_window.display();
 }
