@@ -4,6 +4,12 @@ GameState::GameState() : m_state{nullptr}
 {
 }
 
+GameState& GameState::getInstance()
+{
+	static GameState instance;
+	return instance;
+}
+
 GameState::~GameState()
 {
 	delete m_state;
@@ -11,27 +17,31 @@ GameState::~GameState()
 
 void GameState::changeState(State* state)
 {
-	delete m_state;
-	m_state = m_state;
+	if (m_state != nullptr)
+	{
+		delete m_state;
+	}
+
+	m_state = state;
+	m_state->init();
 }
 
 void GameState::initState()
 {
 	m_state = new MainMenu();
-	m_state->init(*this);
 }
 
 void GameState::init()
 {
-	m_state->init(*this);
+	m_state->init();
 }
 
-void GameState::update()
+void GameState::update() 
 {
-	m_state->update(*this);
+	m_state->update();
 }
 
 void GameState::draw(sf::RenderWindow& window)
 {
-	m_state->draw(*this, window);
+	m_state->draw(window);
 }

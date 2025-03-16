@@ -2,7 +2,8 @@
 
 SnakeGame::SnakeGame() : m_window(sf::VideoMode(1920, 1080), "Snake Game")
 {
-	m_gameState.initState();
+	GameState::getInstance().initState();
+	GameState::getInstance().init();
 }
 
 void SnakeGame::run()
@@ -43,8 +44,7 @@ void SnakeGame::eventHandle()
 
 void SnakeGame::updateAll()
 {
-	m_gameState.update();
-	m_snake.update();
+	GameState::getInstance().update();
 }
 
 void SnakeGame::windowClear()
@@ -54,8 +54,7 @@ void SnakeGame::windowClear()
 
 void SnakeGame::drawToWindow()
 {
-	m_gameState.draw(m_window);
-	m_snake.draw(m_window);
+	GameState::getInstance().draw(m_window);
 }
 
 void SnakeGame::displayToWindow()

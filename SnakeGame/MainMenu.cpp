@@ -3,7 +3,7 @@
 MainMenu::MainMenu()
 {}
 
-void MainMenu::init(GameState& gameState)
+void MainMenu::init()
 {
 	m_font.loadFromFile("res/fonts/youngserif-regular.ttf");
 
@@ -32,10 +32,23 @@ void MainMenu::init(GameState& gameState)
 	m_exit.setString("3. Exit");
 }
 
-void MainMenu::update(GameState& gameState)
-{}
+void MainMenu::update()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		GameState::getInstance().changeState(new Gameplay());
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		//m_gameState.changeState(new Options());
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		exit(0);
+	}
+}
 
-void MainMenu::draw(GameState& gameState, sf::RenderWindow& window)
+void MainMenu::draw(sf::RenderWindow& window)
 {
 	window.draw(m_title);
 	window.draw(m_play);

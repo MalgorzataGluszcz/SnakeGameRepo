@@ -1,5 +1,7 @@
 #pragma once
 #include "State.hpp"
+#include "GameState.hpp"
+#include "Gameplay.hpp"
 
 class MainMenu : public State
 {
@@ -7,9 +9,9 @@ public:
 	MainMenu();
 	~MainMenu() {}
 
-	void init(GameState& gameState) override;
-	void update(GameState& gameState) override;
-	void draw(GameState& gameState, sf::RenderWindow& window) override;
+	void init() override;
+	void update() override;
+	void draw(sf::RenderWindow& window) override;
 
 private:
 	sf::Font m_font;

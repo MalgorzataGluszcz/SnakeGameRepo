@@ -1,13 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
-class GameState;
 	
 class State
 {
 public:
+	State() {}
 	virtual ~State() {}
-	virtual void init(GameState& gameState) = 0;
-	virtual void update(GameState& gameState) = 0;
-	virtual void draw(GameState& gameState, sf::RenderWindow& window) = 0;
+	virtual void init() = 0;
+	virtual void update() = 0;
+	virtual void draw(sf::RenderWindow& window) = 0;
 };

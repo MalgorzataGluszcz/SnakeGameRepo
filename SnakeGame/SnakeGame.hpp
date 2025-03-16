@@ -20,6 +20,5 @@ private:
 private:
 	sf::RenderWindow m_window;
 
-	GameState m_gameState;
 	Snake m_snake;
 };
